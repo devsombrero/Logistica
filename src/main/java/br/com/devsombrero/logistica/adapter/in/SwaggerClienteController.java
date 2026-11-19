@@ -1,0 +1,30 @@
+package br.com.devsombrero.logistica.adapter.in;
+
+import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoCliente;
+import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@Tag(name = "ClienteController", description = "Endpoints de controle de Clientes")
+public interface SwaggerClienteController {
+
+    @Operation(
+            summary = "Cadastrar cliente",
+            description = "Realiza o cadastro de um novo cliente."
+    )
+    @ApiResponse(responseCode = "201", description = "Cliente cadastrado com sucesso")
+    @ApiResponse(responseCode = "400", description = "Dados inválidos")
+    @ApiResponse(responseCode = "422", description = "Cliente já cadastrado")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    RetornoCliente cadastrar(
+            @RequestBody(description = "Dados para cadastro do cliente")
+            RequisicaoCliente requisicaoCliente
+    );
+}

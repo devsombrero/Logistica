@@ -1,3 +1,6 @@
 spring:
   application:
     name: logistica
+  mongodb:
+    uri: mongodb://admin:logisticaP4ss@localhost:27017
+    database: mgologisticadb00
