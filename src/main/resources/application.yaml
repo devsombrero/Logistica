@@ -4,3 +4,10 @@ spring:
   mongodb:
     uri: mongodb://admin:logisticaP4ss@localhost:27017
     database: mgologisticadb00
+
+logging:
+  level:
+    root: INFO
+    br.com.devsombrero.logistica: INFO
+    org.springframework: WARN
+    org.mongodb.driver: WARN
