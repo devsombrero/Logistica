@@ -60,7 +60,7 @@ public class BuscarPaginadoUseCase implements BuscarPaginadoInputPort {
                 resultado.paginaAtual(),
                 resultado.tamanhoPagina(),
                 resultado.totalPaginas(),
-                resultado.totalElementosPagina()
+                resultado.totalElementos()
         );
     }
 }

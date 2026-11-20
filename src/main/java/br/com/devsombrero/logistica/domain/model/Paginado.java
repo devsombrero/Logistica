@@ -4,9 +4,9 @@ import java.util.List;
 
 public record Paginado<T>(
         List<T> conteudo,
-        Long paginaAtual,
+        int paginaAtual,
         int tamanhoPagina,
         int totalPaginas,
-        int totalElementosPagina
+        long totalElementos
 ) {
 }

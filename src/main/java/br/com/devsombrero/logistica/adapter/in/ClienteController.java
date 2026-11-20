@@ -50,7 +50,7 @@ public class ClienteController implements SwaggerClienteController {
     }
 
     @Override
-    public void apagar(String id) {
+    public void apagar(@PathVariable String id) {
         this.clienteService.apagar(id);
     }
 }

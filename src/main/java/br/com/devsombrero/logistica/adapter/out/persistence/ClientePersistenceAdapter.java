@@ -32,10 +32,10 @@ public class ClientePersistenceAdapter implements ClientePersistenceOutputPort {
                 page.getContent().stream()
                         .map(ClienteDocument::toDomain)
                         .toList(),
-                page.getTotalElements(),
-                page.getTotalPages(),
                 page.getNumber(),
-                page.getSize()
+                page.getSize(),
+                page.getTotalPages(),
+                page.getTotalElements()
         );
     }
 
