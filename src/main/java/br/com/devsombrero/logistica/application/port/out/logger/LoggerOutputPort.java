@@ -1,4 +1,4 @@
-package br.com.devsombrero.logistica.application.port.out;
+package br.com.devsombrero.logistica.application.port.out.logger;
 
 public interface LoggerOutputPort {
     void info(Class<?> source, String message);

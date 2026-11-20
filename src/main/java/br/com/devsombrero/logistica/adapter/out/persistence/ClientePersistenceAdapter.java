@@ -1,6 +1,6 @@
 package br.com.devsombrero.logistica.adapter.out.persistence;
 
-import br.com.devsombrero.logistica.application.port.out.ClientePersistenceOutputPort;
+import br.com.devsombrero.logistica.application.port.out.cliente.ClientePersistenceOutputPort;
 import br.com.devsombrero.logistica.domain.exception.EntidadeNotFoundException;
 import br.com.devsombrero.logistica.domain.model.Cliente;
 import br.com.devsombrero.logistica.domain.model.Paginado;

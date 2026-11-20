@@ -1,7 +1,8 @@
 package br.com.devsombrero.logistica.application.usecase;
 
-import br.com.devsombrero.logistica.application.port.out.ClientePersistenceOutputPort;
-import br.com.devsombrero.logistica.application.port.out.LoggerOutputPort;
+import br.com.devsombrero.logistica.application.port.out.cliente.ClientePersistenceOutputPort;
+import br.com.devsombrero.logistica.application.port.out.logger.LoggerOutputPort;
+import br.com.devsombrero.logistica.application.usecase.cliente.BuscarPaginadoUseCase;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
 import br.com.devsombrero.logistica.domain.exception.RequisicaoInvalidaException;
 import br.com.devsombrero.logistica.domain.model.Cliente;

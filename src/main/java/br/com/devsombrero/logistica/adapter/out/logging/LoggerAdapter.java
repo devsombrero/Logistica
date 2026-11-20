@@ -1,6 +1,6 @@
 package br.com.devsombrero.logistica.adapter.out.logging;
 
-import br.com.devsombrero.logistica.application.port.out.LoggerOutputPort;
+import br.com.devsombrero.logistica.application.port.out.logger.LoggerOutputPort;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package br.com.devsombrero.logistica.application.port.in;
+package br.com.devsombrero.logistica.application.port.in.cliente;
 
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
 

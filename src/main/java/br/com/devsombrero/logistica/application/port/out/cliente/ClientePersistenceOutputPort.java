@@ -1,4 +1,4 @@
-package br.com.devsombrero.logistica.application.port.out;
+package br.com.devsombrero.logistica.application.port.out.cliente;
 
 import br.com.devsombrero.logistica.domain.model.Cliente;
 import br.com.devsombrero.logistica.domain.model.Paginado;

@@ -1,10 +1,10 @@
 package br.com.devsombrero.logistica.domain.service;
 
-import br.com.devsombrero.logistica.application.port.in.ApagarClienteInputPort;
-import br.com.devsombrero.logistica.application.port.in.AtualizarClienteInputPort;
-import br.com.devsombrero.logistica.application.port.in.BuscarClienteInputPort;
-import br.com.devsombrero.logistica.application.port.in.BuscarPaginadoInputPort;
-import br.com.devsombrero.logistica.application.port.in.CadastrarClienteInputPort;
+import br.com.devsombrero.logistica.application.port.in.cliente.ApagarClienteInputPort;
+import br.com.devsombrero.logistica.application.port.in.cliente.AtualizarClienteInputPort;
+import br.com.devsombrero.logistica.application.port.in.cliente.BuscarClienteInputPort;
+import br.com.devsombrero.logistica.application.port.in.cliente.BuscarPaginadoInputPort;
+import br.com.devsombrero.logistica.application.port.in.cliente.CadastrarClienteInputPort;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
 import br.com.devsombrero.logistica.domain.model.Cliente;
 import br.com.devsombrero.logistica.domain.model.Paginado;

@@ -1,8 +1,8 @@
-package br.com.devsombrero.logistica.application.usecase;
+package br.com.devsombrero.logistica.application.usecase.cliente;
 
-import br.com.devsombrero.logistica.application.port.in.ApagarClienteInputPort;
-import br.com.devsombrero.logistica.application.port.out.ClientePersistenceOutputPort;
-import br.com.devsombrero.logistica.application.port.out.LoggerOutputPort;
+import br.com.devsombrero.logistica.application.port.in.cliente.ApagarClienteInputPort;
+import br.com.devsombrero.logistica.application.port.out.cliente.ClientePersistenceOutputPort;
+import br.com.devsombrero.logistica.application.port.out.logger.LoggerOutputPort;
 import br.com.devsombrero.logistica.domain.exception.EntidadeNotFoundException;
 import org.springframework.stereotype.Component;
 
