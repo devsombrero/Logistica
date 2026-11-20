@@ -1,4 +1,4 @@
-package br.com.devsombrero.logistica.adapter.out.persistence;
+package br.com.devsombrero.logistica.adapter.out.persistence.cliente;
 
 import br.com.devsombrero.logistica.application.port.out.cliente.ClientePersistenceOutputPort;
 import br.com.devsombrero.logistica.domain.exception.EntidadeNotFoundException;
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static br.com.devsombrero.logistica.adapter.out.persistence.ClienteDocument.fromDomain;
-import static br.com.devsombrero.logistica.adapter.out.persistence.ClienteDocument.toDomain;
+import static br.com.devsombrero.logistica.adapter.out.persistence.cliente.ClienteDocument.fromDomain;
+import static br.com.devsombrero.logistica.adapter.out.persistence.cliente.ClienteDocument.toDomain;
 
 @Service
 @RequiredArgsConstructor

@@ -1,5 +1,6 @@
 package br.com.devsombrero.logistica.adapter.out.persistence;
 
+import br.com.devsombrero.logistica.adapter.out.persistence.cliente.ClienteDocument;
 import br.com.devsombrero.logistica.domain.model.Cliente;
 import br.com.devsombrero.logistica.support.ClienteFixture;
 import org.junit.jupiter.api.Test;

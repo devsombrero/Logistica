@@ -1,8 +1,7 @@
-package br.com.devsombrero.logistica.adapter.out.persistence;
+package br.com.devsombrero.logistica.adapter.out.persistence.cliente;
 
 import org.springframework.data.mongodb.repository.ExistsQuery;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 
 import java.util.Optional;
 

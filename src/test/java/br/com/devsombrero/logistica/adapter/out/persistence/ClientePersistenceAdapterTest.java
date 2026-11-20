@@ -1,5 +1,8 @@
 package br.com.devsombrero.logistica.adapter.out.persistence;
 
+import br.com.devsombrero.logistica.adapter.out.persistence.cliente.ClienteDocument;
+import br.com.devsombrero.logistica.adapter.out.persistence.cliente.ClienteMongoRepository;
+import br.com.devsombrero.logistica.adapter.out.persistence.cliente.ClientePersistenceAdapter;
 import br.com.devsombrero.logistica.domain.exception.EntidadeNotFoundException;
 import br.com.devsombrero.logistica.domain.model.Cliente;
 import br.com.devsombrero.logistica.domain.model.Paginado;

@@ -1,6 +1,6 @@
 package br.com.devsombrero.logistica;
 
-import br.com.devsombrero.logistica.adapter.out.persistence.ClienteMongoRepository;
+import br.com.devsombrero.logistica.adapter.out.persistence.cliente.ClienteMongoRepository;
 import br.com.devsombrero.logistica.config.CorrelationIdFilter;
 import br.com.devsombrero.logistica.support.ClienteFixture;
 import br.com.devsombrero.logistica.support.TestcontainersConfiguration;

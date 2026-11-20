@@ -1,4 +1,4 @@
-package br.com.devsombrero.logistica.adapter.out.persistence;
+package br.com.devsombrero.logistica.adapter.out.persistence.cliente;
 
 import br.com.devsombrero.logistica.domain.model.Cliente;
 import org.springframework.data.annotation.CreatedDate;

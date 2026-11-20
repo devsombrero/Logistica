@@ -1,4 +1,4 @@
-package br.com.devsombrero.logistica.adapter.in;
+package br.com.devsombrero.logistica.adapter.in.rest;
 
 import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoCliente;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
