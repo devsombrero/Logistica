@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface ClientePersistenceOutputPort {
     Paginado<Cliente> buscarPaginado(int tamanhoPagina, int paginaAtual);
     Optional<Cliente> buscarPorId(String id);
+    Optional<Cliente> buscarPorEmail(String email);
+    Optional<Cliente> buscarPorDocumento(String documento);
     boolean existePorEmailOuDocumento(String email, String documento);
     Cliente salvar(Cliente cliente);
     Cliente atualizar(String id, Cliente cliente);

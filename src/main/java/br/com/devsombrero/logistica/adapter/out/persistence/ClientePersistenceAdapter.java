@@ -46,6 +46,18 @@ public class ClientePersistenceAdapter implements ClientePersistenceOutputPort {
     }
 
     @Override
+    public Optional<Cliente> buscarPorEmail(String email) {
+        return repository.findByEmail(email)
+                .map(ClienteDocument::toDomain);
+    }
+
+    @Override
+    public Optional<Cliente> buscarPorDocumento(String documento) {
+        return repository.findByDocumento(documento)
+                .map(ClienteDocument::toDomain);
+    }
+
+    @Override
     public boolean existePorEmailOuDocumento(String email, String documento) {
         return repository.existsByEmailOrDocumento(email, documento);
     }

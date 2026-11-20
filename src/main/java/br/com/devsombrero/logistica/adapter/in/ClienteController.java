@@ -4,9 +4,7 @@ import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoCliente;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
 import br.com.devsombrero.logistica.domain.service.ClienteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/clientes")
@@ -19,5 +17,20 @@ public class ClienteController implements SwaggerClienteController {
     public RetornoCliente cadastrar(
             @RequestBody RequisicaoCliente requisicaoCliente) {
         return clienteService.cadastrar(requisicaoCliente.toDomain());
+    }
+
+    @Override
+    public RetornoCliente buscarPorId(@PathVariable String id) {
+        return clienteService.buscarPorId(id);
+    }
+
+    @Override
+    public RetornoCliente buscarPorEmail(@RequestParam String email) {
+        return clienteService.buscarPorEmail(email);
+    }
+
+    @Override
+    public RetornoCliente buscarPorDocumento(@RequestParam String documento) {
+        return clienteService.buscarPorDocumento(documento);
     }
 }
