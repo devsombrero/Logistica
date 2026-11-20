@@ -5,6 +5,7 @@ import br.com.devsombrero.logistica.domain.dto.RetornoProduto;
 import br.com.devsombrero.logistica.domain.service.ProdutoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,5 +22,15 @@ public class ProdutoController implements SwaggerProdutoController {
             @Valid @RequestBody RequisicaoProduto requisicaoProduto
     ) {
         return this.produtoService.cadastrar(requisicaoProduto.toDomain());
+    }
+
+    @Override
+    public RetornoProduto buscarPorId(@PathVariable String id) {
+        return this.produtoService.buscarPorId(id);
+    }
+
+    @Override
+    public RetornoProduto buscarPorSku(@PathVariable String sku) {
+        return this.produtoService.buscarPorSku(sku);
     }
 }

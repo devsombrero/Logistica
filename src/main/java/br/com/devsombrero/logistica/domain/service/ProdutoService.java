@@ -5,4 +5,6 @@ import br.com.devsombrero.logistica.domain.model.Produto;
 
 public interface ProdutoService {
     RetornoProduto cadastrar(Produto produto);
+    RetornoProduto buscarPorId(String id);
+    RetornoProduto buscarPorSku(String sku);
 }

@@ -22,6 +22,11 @@ public class ProdutoPersistenceAdapter implements ProdutoPersistenceOutputPort {
     private final ProdutoMongoRepository repository;
 
     @Override
+    public Optional<Produto> buscarPorSku(String id) {
+        return repository.findBySku(id);
+    }
+
+    @Override
     public boolean existePorSku(String sku) {
         return repository.existsBySku(sku);
     }
