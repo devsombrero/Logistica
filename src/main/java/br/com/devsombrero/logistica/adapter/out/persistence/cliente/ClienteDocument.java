@@ -27,7 +27,7 @@ public record ClienteDocument(
         LocalDateTime dataAtualizacao
 ) {
 
-    static ClienteDocument fromDomain(Cliente cliente) {
+    public static ClienteDocument fromDomain(Cliente cliente) {
         return new ClienteDocument(
                 cliente.id(),
                 cliente.nome(),
@@ -42,7 +42,7 @@ public record ClienteDocument(
         );
     }
 
-    static Cliente toDomain(ClienteDocument clienteDocument) {
+    public static Cliente toDomain(ClienteDocument clienteDocument) {
         return new Cliente(
                 clienteDocument.id(),
                 clienteDocument.nome(),
