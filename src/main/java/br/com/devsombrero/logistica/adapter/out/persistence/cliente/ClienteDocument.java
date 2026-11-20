@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+import static br.com.devsombrero.logistica.utils.PersistenceUtils.valorOuAtual;
+
 @Document("clientes")
 public record ClienteDocument(
         @Id
@@ -68,11 +70,5 @@ public record ClienteDocument(
                 this.dataCriacao,
                 this.dataAtualizacao
         );
-    }
-
-    private static String valorOuAtual(String valorAtual, String novoValor) {
-        return novoValor == null || novoValor.isBlank()
-                ? valorAtual
-                : novoValor;
     }
 }
