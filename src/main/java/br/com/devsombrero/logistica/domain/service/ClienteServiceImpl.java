@@ -1,5 +1,6 @@
 package br.com.devsombrero.logistica.domain.service;
 
+import br.com.devsombrero.logistica.application.port.in.ApagarClienteInputPort;
 import br.com.devsombrero.logistica.application.port.in.AtualizarClienteInputPort;
 import br.com.devsombrero.logistica.application.port.in.BuscarClienteInputPort;
 import br.com.devsombrero.logistica.application.port.in.CadastrarClienteInputPort;
@@ -15,6 +16,7 @@ public class ClienteServiceImpl implements ClienteService  {
     private final CadastrarClienteInputPort cadastrarClienteInputPort;
     private final BuscarClienteInputPort buscarClienteInputPort;
     private final AtualizarClienteInputPort atualizarClienteInputPort;
+    private final ApagarClienteInputPort apagarClienteInputPort;
 
     @Override
     public RetornoCliente cadastrar(Cliente cliente) {
@@ -39,5 +41,10 @@ public class ClienteServiceImpl implements ClienteService  {
     @Override
     public RetornoCliente atualizar(String id, Cliente cliente) {
         return atualizarClienteInputPort.atualizar(id, cliente);
+    }
+
+    @Override
+    public void apagar(String id) {
+        apagarClienteInputPort.apagar(id);
     }
 }

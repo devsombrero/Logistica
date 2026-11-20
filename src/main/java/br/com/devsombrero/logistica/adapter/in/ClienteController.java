@@ -42,4 +42,9 @@ public class ClienteController implements SwaggerClienteController {
     ) {
         return clienteService.atualizar(id, requisicaoCliente.toDomain());
     }
+
+    @Override
+    public void apagar(String id) {
+        this.clienteService.apagar(id);
+    }
 }

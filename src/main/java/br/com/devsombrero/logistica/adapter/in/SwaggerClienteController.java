@@ -8,10 +8,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "ClienteController", description = "Endpoints de controle de Clientes")
 public interface SwaggerClienteController {
@@ -75,5 +72,19 @@ public interface SwaggerClienteController {
             @Parameter String id,
             @RequestBody(description = "Dados para cadastro do cliente")
             RequisicaoCliente requisicaoCliente
+    );
+
+    @Operation(
+            summary = "Excluir cliente",
+            description = "Exclui um cliente através do seu identificador."
+    )
+    @ApiResponse(responseCode = "204", description = "Cliente excluído com sucesso")
+    @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void apagar(
+            @Parameter(description = "ID do cliente", required = true)
+            String id
     );
 }
