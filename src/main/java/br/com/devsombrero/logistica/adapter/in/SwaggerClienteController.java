@@ -2,6 +2,7 @@ package br.com.devsombrero.logistica.adapter.in;
 
 import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoCliente;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -12,6 +13,22 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "ClienteController", description = "Endpoints de controle de Clientes")
 public interface SwaggerClienteController {
+
+    @Operation(
+            summary = "Buscar clientes paginados",
+            description = "Retorna clientes de forma paginada."
+    )
+    @ApiResponse(responseCode = "200", description = "Clientes retornados com sucesso")
+    @ApiResponse(responseCode = "400", description = "Parâmetros inválidos")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @GetMapping
+    Paginado<RetornoCliente> buscarPaginado(
+            @Parameter(description = "Quantidade de registros por página")
+            @RequestParam(defaultValue = "10") int tamanhoPagina,
+
+            @Parameter(description = "Número da página, começando em zero")
+            @RequestParam(defaultValue = "0") int paginaAtual
+    );
 
     @Operation(
             summary = "Cadastrar cliente",

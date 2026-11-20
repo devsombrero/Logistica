@@ -1,11 +1,9 @@
 package br.com.devsombrero.logistica.domain.service;
 
-import br.com.devsombrero.logistica.application.port.in.ApagarClienteInputPort;
-import br.com.devsombrero.logistica.application.port.in.AtualizarClienteInputPort;
-import br.com.devsombrero.logistica.application.port.in.BuscarClienteInputPort;
-import br.com.devsombrero.logistica.application.port.in.CadastrarClienteInputPort;
+import br.com.devsombrero.logistica.application.port.in.*;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
 import br.com.devsombrero.logistica.domain.model.Cliente;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +15,15 @@ public class ClienteServiceImpl implements ClienteService  {
     private final BuscarClienteInputPort buscarClienteInputPort;
     private final AtualizarClienteInputPort atualizarClienteInputPort;
     private final ApagarClienteInputPort apagarClienteInputPort;
+    private final BuscarPaginadoInputPort buscarPaginadoInputPort;
+
+    @Override
+    public Paginado<RetornoCliente> buscarPaginado(int tamanhoPagina, int paginaAtual) {
+        return buscarPaginadoInputPort.buscarPaginado(
+                tamanhoPagina,
+                paginaAtual
+        );
+    }
 
     @Override
     public RetornoCliente cadastrar(Cliente cliente) {

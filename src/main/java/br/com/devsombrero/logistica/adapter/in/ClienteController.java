@@ -2,6 +2,7 @@ package br.com.devsombrero.logistica.adapter.in;
 
 import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoCliente;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import br.com.devsombrero.logistica.domain.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class ClienteController implements SwaggerClienteController {
 
     private final ClienteService clienteService;
+
+    @Override
+    public Paginado<RetornoCliente> buscarPaginado(int tamanhoPagina, int paginaAtual) {
+        return clienteService.buscarPaginado(tamanhoPagina, paginaAtual);
+    }
 
     @Override
     public RetornoCliente cadastrar(

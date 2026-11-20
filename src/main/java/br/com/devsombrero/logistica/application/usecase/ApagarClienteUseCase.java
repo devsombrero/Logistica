@@ -4,15 +4,21 @@ import br.com.devsombrero.logistica.application.port.in.ApagarClienteInputPort;
 import br.com.devsombrero.logistica.application.port.out.ClientePersistenceOutputPort;
 import br.com.devsombrero.logistica.application.port.out.LoggerOutputPort;
 import br.com.devsombrero.logistica.domain.exception.EntidadeNotFoundException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class ApagarClienteUseCase implements ApagarClienteInputPort {
 
     private final ClientePersistenceOutputPort clientePersistenceOutputPort;
     private final LoggerOutputPort logger;
+
+    public ApagarClienteUseCase(
+            final ClientePersistenceOutputPort clientePersistenceOutputPort,
+            final LoggerOutputPort logger
+    ) {
+        this.clientePersistenceOutputPort = clientePersistenceOutputPort;
+        this.logger = logger;
+    }
 
     @Override
     public void apagar(String id) {
