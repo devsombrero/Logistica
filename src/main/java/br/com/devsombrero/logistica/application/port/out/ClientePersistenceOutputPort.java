@@ -14,4 +14,5 @@ public interface ClientePersistenceOutputPort {
     Cliente salvar(Cliente cliente);
     Cliente atualizar(String id, Cliente cliente);
     void deletar(String id);
+    boolean existeEmailOuDocumentoEmOutroCliente(String email, String documento, String id);
 }

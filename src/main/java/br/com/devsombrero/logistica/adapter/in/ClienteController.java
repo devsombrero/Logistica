@@ -3,6 +3,7 @@ package br.com.devsombrero.logistica.adapter.in;
 import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoCliente;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
 import br.com.devsombrero.logistica.domain.service.ClienteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class ClienteController implements SwaggerClienteController {
 
     @Override
     public RetornoCliente cadastrar(
-            @RequestBody RequisicaoCliente requisicaoCliente) {
+            @Valid @RequestBody RequisicaoCliente requisicaoCliente) {
         return clienteService.cadastrar(requisicaoCliente.toDomain());
     }
 
@@ -32,5 +33,13 @@ public class ClienteController implements SwaggerClienteController {
     @Override
     public RetornoCliente buscarPorDocumento(@RequestParam String documento) {
         return clienteService.buscarPorDocumento(documento);
+    }
+
+    @Override
+    public RetornoCliente atualizar(
+            @PathVariable String id,
+            @RequestBody RequisicaoCliente requisicaoCliente
+    ) {
+        return clienteService.atualizar(id, requisicaoCliente.toDomain());
     }
 }

@@ -8,4 +8,5 @@ public interface ClienteService {
     RetornoCliente buscarPorId(String id);
     RetornoCliente buscarPorEmail(String email);
     RetornoCliente buscarPorDocumento(String documento);
+    RetornoCliente atualizar(String id, Cliente cliente);
 }

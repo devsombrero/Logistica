@@ -87,4 +87,13 @@ public class ClientePersistenceAdapter implements ClientePersistenceOutputPort {
         repository.deleteById(id);
 
     }
+
+    @Override
+    public boolean existeEmailOuDocumentoEmOutroCliente(String email, String documento, String id) {
+        return repository.existeEmailOuDocumentoEmOutroCliente(
+                email,
+                documento,
+                id
+        );
+    }
 }
