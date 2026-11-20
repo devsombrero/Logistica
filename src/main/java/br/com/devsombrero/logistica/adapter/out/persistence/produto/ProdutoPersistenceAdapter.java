@@ -32,6 +32,11 @@ public class ProdutoPersistenceAdapter implements ProdutoPersistenceOutputPort {
     }
 
     @Override
+    public boolean existePorSkuEIdDiferente(String sku, String id) {
+        return repository.existePorSkuEIdDiferente(sku, id);
+    }
+
+    @Override
     public Paginado<Produto> buscarPaginado(int tamanhoPagina, int paginaAtual) {
         Pageable pageable = PageRequest.of(paginaAtual, tamanhoPagina);
 

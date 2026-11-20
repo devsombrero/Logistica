@@ -33,4 +33,12 @@ public class ProdutoController implements SwaggerProdutoController {
     public RetornoProduto buscarPorSku(@PathVariable String sku) {
         return this.produtoService.buscarPorSku(sku);
     }
+
+    @Override
+    public RetornoProduto atualizar(
+            @PathVariable String id,
+            @RequestBody RequisicaoProduto requisicaoProduto
+    ) {
+        return produtoService.atualizar(id, requisicaoProduto.toDomain());
+    }
 }

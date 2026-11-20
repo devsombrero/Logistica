@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -49,4 +50,20 @@ public interface SwaggerProdutoController {
     @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     @GetMapping("/sku/{sku}")
     RetornoProduto buscarPorSku(@Parameter String sku);
+
+    @Operation(
+            summary = "Atualizar produto",
+            description = "Atualizar cadastro de produto."
+    )
+    @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso")
+    @ApiResponse(responseCode = "400", description = "Dados inválidos")
+    @ApiResponse(responseCode = "422", description = "Produto já cadastrado")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    RetornoProduto atualizar(
+            @Parameter String id,
+            @RequestBody(description = "Dados para atualização do produto")
+            RequisicaoProduto requisicaoProduto
+    );
 }

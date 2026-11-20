@@ -9,4 +9,5 @@ public interface ProdutoPersistenceOutputPort
         extends CrudPersistenceOutputPort<Produto, String> {
     Optional<Produto> buscarPorSku(String id);
     boolean existePorSku(String sku);
+    boolean existePorSkuEIdDiferente(String sku, String id);
 }

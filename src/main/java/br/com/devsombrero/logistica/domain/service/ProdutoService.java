@@ -7,4 +7,5 @@ public interface ProdutoService {
     RetornoProduto cadastrar(Produto produto);
     RetornoProduto buscarPorId(String id);
     RetornoProduto buscarPorSku(String sku);
+    RetornoProduto atualizar(String id, Produto produto);
 }

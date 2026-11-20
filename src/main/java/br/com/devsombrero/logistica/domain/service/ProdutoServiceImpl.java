@@ -1,5 +1,6 @@
 package br.com.devsombrero.logistica.domain.service;
 
+import br.com.devsombrero.logistica.application.port.in.produto.AtualizarProdutoInputPort;
 import br.com.devsombrero.logistica.application.port.in.produto.BuscarProdutoInputPort;
 import br.com.devsombrero.logistica.application.port.in.produto.CadastrarProdutoInputPort;
 import br.com.devsombrero.logistica.domain.dto.RetornoProduto;
@@ -13,6 +14,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     private final CadastrarProdutoInputPort cadastrarProdutoInputPort;
     private final BuscarProdutoInputPort buscarProdutoInputPort;
+    private final AtualizarProdutoInputPort atualizarProdutoInputPort;
 
     @Override
     public RetornoProduto cadastrar(Produto produto) {
@@ -27,5 +29,10 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public RetornoProduto buscarPorSku(String sku) {
         return buscarProdutoInputPort.buscarPorSku(sku);
+    }
+
+    @Override
+    public RetornoProduto atualizar(String id, Produto produto) {
+        return atualizarProdutoInputPort.atualizar(id, produto);
     }
 }
