@@ -1,18 +1,15 @@
 package br.com.devsombrero.logistica.application.port.out.cliente;
 
+import br.com.devsombrero.logistica.application.port.out.crud.CrudPersistenceOutputPort;
 import br.com.devsombrero.logistica.domain.model.Cliente;
-import br.com.devsombrero.logistica.domain.model.Paginado;
 
 import java.util.Optional;
 
-public interface ClientePersistenceOutputPort {
-    Paginado<Cliente> buscarPaginado(int tamanhoPagina, int paginaAtual);
-    Optional<Cliente> buscarPorId(String id);
+public interface ClientePersistenceOutputPort
+    extends CrudPersistenceOutputPort<Cliente, String> {
     Optional<Cliente> buscarPorEmail(String email);
     Optional<Cliente> buscarPorDocumento(String documento);
     boolean existePorEmailOuDocumento(String email, String documento);
-    Cliente salvar(Cliente cliente);
-    Cliente atualizar(String id, Cliente cliente);
-    void deletar(String id);
     boolean existeEmailOuDocumentoEmOutroCliente(String email, String documento, String id);
+    void deletar(String id);
 }
