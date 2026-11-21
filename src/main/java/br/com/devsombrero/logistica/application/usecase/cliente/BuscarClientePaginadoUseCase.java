@@ -1,6 +1,6 @@
 package br.com.devsombrero.logistica.application.usecase.cliente;
 
-import br.com.devsombrero.logistica.application.port.in.cliente.BuscarPaginadoInputPort;
+import br.com.devsombrero.logistica.application.port.in.cliente.BuscarClientePaginadoInputPort;
 import br.com.devsombrero.logistica.application.port.out.cliente.ClientePersistenceOutputPort;
 import br.com.devsombrero.logistica.application.port.out.logger.LoggerOutputPort;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class BuscarPaginadoUseCase implements BuscarPaginadoInputPort {
+public class BuscarClientePaginadoUseCase implements BuscarClientePaginadoInputPort {
 
     private final ClientePersistenceOutputPort clientePersistenceOutputPort;
     private final LoggerOutputPort logger;
 
-    public BuscarPaginadoUseCase(
+    public BuscarClientePaginadoUseCase(
             final ClientePersistenceOutputPort clientePersistenceOutputPort,
             final LoggerOutputPort logger
     ) {

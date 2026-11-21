@@ -3,7 +3,7 @@ package br.com.devsombrero.logistica.domain.service;
 import br.com.devsombrero.logistica.application.port.in.cliente.ApagarClienteInputPort;
 import br.com.devsombrero.logistica.application.port.in.cliente.AtualizarClienteInputPort;
 import br.com.devsombrero.logistica.application.port.in.cliente.BuscarClienteInputPort;
-import br.com.devsombrero.logistica.application.port.in.cliente.BuscarPaginadoInputPort;
+import br.com.devsombrero.logistica.application.port.in.cliente.BuscarClientePaginadoInputPort;
 import br.com.devsombrero.logistica.application.port.in.cliente.CadastrarClienteInputPort;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
 import br.com.devsombrero.logistica.domain.model.Cliente;
@@ -33,7 +33,7 @@ class ClienteServiceImplTest {
     @Mock
     private ApagarClienteInputPort apagar;
     @Mock
-    private BuscarPaginadoInputPort buscarPaginado;
+    private BuscarClientePaginadoInputPort buscarPaginado;
 
     @InjectMocks
     private ClienteServiceImpl service;

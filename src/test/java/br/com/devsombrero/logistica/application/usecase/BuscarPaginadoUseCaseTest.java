@@ -2,7 +2,7 @@ package br.com.devsombrero.logistica.application.usecase;
 
 import br.com.devsombrero.logistica.application.port.out.cliente.ClientePersistenceOutputPort;
 import br.com.devsombrero.logistica.application.port.out.logger.LoggerOutputPort;
-import br.com.devsombrero.logistica.application.usecase.cliente.BuscarPaginadoUseCase;
+import br.com.devsombrero.logistica.application.usecase.cliente.BuscarClientePaginadoUseCase;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
 import br.com.devsombrero.logistica.domain.exception.RequisicaoInvalidaException;
 import br.com.devsombrero.logistica.domain.model.Cliente;
@@ -33,7 +33,7 @@ class BuscarPaginadoUseCaseTest {
     private LoggerOutputPort logger;
 
     @InjectMocks
-    private BuscarPaginadoUseCase useCase;
+    private BuscarClientePaginadoUseCase useCase;
 
     @Test
     void deveRetornarPaginaMapeada() {
@@ -47,7 +47,7 @@ class BuscarPaginadoUseCaseTest {
         assertThat(resultado.tamanhoPagina()).isEqualTo(22);
         assertThat(resultado.totalPaginas()).isEqualTo(33);
         assertThat(resultado.totalElementos()).isEqualTo(44L);
-        verify(logger).info(BuscarPaginadoUseCase.class, "Busca paginada de clientes realizada com sucesso");
+        verify(logger).info(BuscarClientePaginadoUseCase.class, "Busca paginada de clientes realizada com sucesso");
     }
 
     @ParameterizedTest
@@ -58,6 +58,6 @@ class BuscarPaginadoUseCaseTest {
                 .hasMessage("O tamanho da página deve ser maior que zero e a página não pode ser negativa.");
 
         verifyNoInteractions(persistence);
-        verify(logger).warn(BuscarPaginadoUseCase.class, "Parâmetros inválidos para busca paginada");
+        verify(logger).warn(BuscarClientePaginadoUseCase.class, "Parâmetros inválidos para busca paginada");
     }
 }

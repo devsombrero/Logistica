@@ -15,7 +15,7 @@ public class ClienteServiceImpl implements ClienteService  {
     private final BuscarClienteInputPort buscarClienteInputPort;
     private final AtualizarClienteInputPort atualizarClienteInputPort;
     private final ApagarClienteInputPort apagarClienteInputPort;
-    private final BuscarPaginadoInputPort buscarPaginadoInputPort;
+    private final BuscarClientePaginadoInputPort buscarPaginadoInputPort;
 
     @Override
     public Paginado<RetornoCliente> buscarPaginado(int tamanhoPagina, int paginaAtual) {
