@@ -8,10 +8,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "ProdutoController", description = "Endpoints de controle de Produtos")
 public interface SwaggerProdutoController {
@@ -65,5 +62,19 @@ public interface SwaggerProdutoController {
             @Parameter String id,
             @RequestBody(description = "Dados para atualização do produto")
             RequisicaoProduto requisicaoProduto
+    );
+
+    @Operation(
+            summary = "Excluir produto",
+            description = "Exclui um produto através do seu identificador."
+    )
+    @ApiResponse(responseCode = "204", description = "Produto excluído com sucesso")
+    @ApiResponse(responseCode = "404", description = "Produto não encontrado")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void apagar(
+            @Parameter(description = "ID do produto", required = true)
+            String id
     );
 }

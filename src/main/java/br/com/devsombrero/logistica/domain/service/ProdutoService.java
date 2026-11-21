@@ -8,4 +8,5 @@ public interface ProdutoService {
     RetornoProduto buscarPorId(String id);
     RetornoProduto buscarPorSku(String sku);
     RetornoProduto atualizar(String id, Produto produto);
+    void apagar(String id);
 }

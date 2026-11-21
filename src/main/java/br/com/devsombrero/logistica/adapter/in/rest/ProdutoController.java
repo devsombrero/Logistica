@@ -41,4 +41,9 @@ public class ProdutoController implements SwaggerProdutoController {
     ) {
         return produtoService.atualizar(id, requisicaoProduto.toDomain());
     }
+
+    @Override
+    public void apagar(@PathVariable String id) {
+        produtoService.apagar(id);
+    }
 }
