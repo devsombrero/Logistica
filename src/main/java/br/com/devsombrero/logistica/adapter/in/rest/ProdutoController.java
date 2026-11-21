@@ -2,6 +2,7 @@ package br.com.devsombrero.logistica.adapter.in.rest;
 
 import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoProduto;
 import br.com.devsombrero.logistica.domain.dto.RetornoProduto;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import br.com.devsombrero.logistica.domain.service.ProdutoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProdutoController implements SwaggerProdutoController {
 
     private final ProdutoService produtoService;
+
+    @Override
+    public Paginado<RetornoProduto> buscarPaginado(int tamanhoPagina, int paginaAtual) {
+        return produtoService.buscarPaginado(tamanhoPagina, paginaAtual);
+    }
 
     @Override
     public RetornoProduto cadastrar(
