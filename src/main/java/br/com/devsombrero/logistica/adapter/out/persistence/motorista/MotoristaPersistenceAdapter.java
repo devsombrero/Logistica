@@ -79,4 +79,14 @@ public class MotoristaPersistenceAdapter implements MotoristaPersistenceOutputPo
     public boolean existePorCnh(String cnh) {
         return repository.existsByCnh(cnh);
     }
+
+    @Override
+    public Optional<Motorista> buscarPorCnh(String cnh) {
+        return repository.findByCnh(cnh);
+    }
+
+    @Override
+    public Optional<Motorista> buscarPorCpf(String cpf) {
+        return repository.findByCpf(cpf);
+    }
 }

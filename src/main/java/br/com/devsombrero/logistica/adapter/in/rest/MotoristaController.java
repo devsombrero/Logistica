@@ -5,9 +5,7 @@ import br.com.devsombrero.logistica.domain.dto.RetornoMotorista;
 import br.com.devsombrero.logistica.domain.service.MotoristaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/motoristas")
@@ -19,5 +17,20 @@ public class MotoristaController implements SwaggerMotoristaController {
     @Override
     public RetornoMotorista cadastrar(@Valid @RequestBody RequisicaoMotorista requisicaoMotorista) {
         return this.motoristaService.cadastrar(requisicaoMotorista.toDomain());
+    }
+
+    @Override
+    public RetornoMotorista buscarPorId(@PathVariable String id) {
+        return this.motoristaService.buscarPorId(id);
+    }
+
+    @Override
+    public RetornoMotorista buscarPorCnh(@RequestParam String cnh) {
+        return this.motoristaService.buscarPorCnh(cnh);
+    }
+
+    @Override
+    public RetornoMotorista buscarPorCpf(@RequestParam String cpf) {
+        return this.motoristaService.buscarPorCpf(cpf);
     }
 }
