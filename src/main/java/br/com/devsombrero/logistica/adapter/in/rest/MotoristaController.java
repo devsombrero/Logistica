@@ -33,4 +33,12 @@ public class MotoristaController implements SwaggerMotoristaController {
     public RetornoMotorista buscarPorCpf(@RequestParam String cpf) {
         return this.motoristaService.buscarPorCpf(cpf);
     }
+
+    @Override
+    public RetornoMotorista atualizar(
+            @PathVariable String id,
+            @RequestBody RequisicaoMotorista requisicaoMotorista
+    ) {
+        return this.motoristaService.atualizar(id, requisicaoMotorista.toDomain());
+    }
 }

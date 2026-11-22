@@ -1,5 +1,6 @@
 package br.com.devsombrero.logistica.domain.service;
 
+import br.com.devsombrero.logistica.application.port.in.motorista.AtualizarMotoristaInputPort;
 import br.com.devsombrero.logistica.application.port.in.motorista.BuscarMotoristaInputPort;
 import br.com.devsombrero.logistica.application.port.in.motorista.CadastrarMotoristaInputPort;
 import br.com.devsombrero.logistica.domain.dto.RetornoMotorista;
@@ -13,6 +14,7 @@ public class MotoristaServiceImpl implements MotoristaService {
 
     private final CadastrarMotoristaInputPort cadastrarMotoristaInputPort;
     private final BuscarMotoristaInputPort buscarMotoristaInputPort;
+    private final AtualizarMotoristaInputPort atualizarMotoristaInputPort;
 
     @Override
     public RetornoMotorista cadastrar(Motorista motorista) {
@@ -32,5 +34,10 @@ public class MotoristaServiceImpl implements MotoristaService {
     @Override
     public RetornoMotorista buscarPorCpf(String cpf) {
         return this.buscarMotoristaInputPort.buscarPorCpf(cpf);
+    }
+
+    @Override
+    public RetornoMotorista atualizar(String id, Motorista motorista) {
+        return this.atualizarMotoristaInputPort.atualizar(id, motorista);
     }
 }

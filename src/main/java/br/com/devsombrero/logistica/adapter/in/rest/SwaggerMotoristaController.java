@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -59,4 +60,20 @@ public interface SwaggerMotoristaController {
     @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     @GetMapping("/cpf")
     RetornoMotorista buscarPorCpf(@Parameter String cpf);
+
+    @Operation(
+            summary = "Atualizar motorista",
+            description = "Atualizar cadastro de motorista."
+    )
+    @ApiResponse(responseCode = "200", description = "Motorista atualizado com sucesso")
+    @ApiResponse(responseCode = "400", description = "Dados inválidos")
+    @ApiResponse(responseCode = "422", description = "Motorista já cadastrado")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    RetornoMotorista atualizar(
+            @Parameter String id,
+            @RequestBody(description = "Dados para atualização do motorista")
+            RequisicaoMotorista requisicaoMotorista
+    );
 }

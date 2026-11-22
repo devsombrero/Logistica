@@ -11,4 +11,5 @@ public interface MotoristaPersistenceOutputPort
     boolean existePorCnh(String cnh);
     Optional<Motorista> buscarPorCnh(String cnh);
     Optional<Motorista> buscarPorCpf(String cpf);
+    boolean existeCnhOuCpfEmOutroMotorista(String cnh, String cpf, String id);
 }

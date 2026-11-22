@@ -8,4 +8,5 @@ public interface MotoristaService {
     RetornoMotorista buscarPorId(String id);
     RetornoMotorista buscarPorCnh(String cnh);
     RetornoMotorista buscarPorCpf(String cpf);
+    RetornoMotorista atualizar(String id, Motorista motorista);
 }
