@@ -1,10 +1,9 @@
 package br.com.devsombrero.logistica.domain.service;
 
-import br.com.devsombrero.logistica.application.port.in.motorista.AtualizarMotoristaInputPort;
-import br.com.devsombrero.logistica.application.port.in.motorista.BuscarMotoristaInputPort;
-import br.com.devsombrero.logistica.application.port.in.motorista.CadastrarMotoristaInputPort;
+import br.com.devsombrero.logistica.application.port.in.motorista.*;
 import br.com.devsombrero.logistica.domain.dto.RetornoMotorista;
 import br.com.devsombrero.logistica.domain.model.Motorista;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +14,8 @@ public class MotoristaServiceImpl implements MotoristaService {
     private final CadastrarMotoristaInputPort cadastrarMotoristaInputPort;
     private final BuscarMotoristaInputPort buscarMotoristaInputPort;
     private final AtualizarMotoristaInputPort atualizarMotoristaInputPort;
+    private final BuscarMotoristaPaginadoInputPort buscarMotoristaPaginadoInputPort;
+    private final ApagarMotoristaInputPort apagarMotoristaInputPort;
 
     @Override
     public RetornoMotorista cadastrar(Motorista motorista) {
@@ -39,5 +40,15 @@ public class MotoristaServiceImpl implements MotoristaService {
     @Override
     public RetornoMotorista atualizar(String id, Motorista motorista) {
         return this.atualizarMotoristaInputPort.atualizar(id, motorista);
+    }
+
+    @Override
+    public Paginado<RetornoMotorista> buscarPaginado(int paginaAtual, int tamanhoPagina) {
+        return this.buscarMotoristaPaginadoInputPort.buscarPaginado(paginaAtual, tamanhoPagina);
+    }
+
+    @Override
+    public void apagar(String id) {
+        this.apagarMotoristaInputPort.apagar(id);
     }
 }

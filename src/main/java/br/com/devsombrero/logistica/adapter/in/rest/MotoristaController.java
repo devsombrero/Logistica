@@ -2,6 +2,7 @@ package br.com.devsombrero.logistica.adapter.in.rest;
 
 import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoMotorista;
 import br.com.devsombrero.logistica.domain.dto.RetornoMotorista;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import br.com.devsombrero.logistica.domain.service.MotoristaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class MotoristaController implements SwaggerMotoristaController {
 
     private final MotoristaService motoristaService;
+
+    @Override
+    public Paginado<RetornoMotorista> buscarPaginado(int tamanhoPagina, int paginaAtual) {
+        return this.motoristaService.buscarPaginado(paginaAtual, tamanhoPagina);
+    }
 
     @Override
     public RetornoMotorista cadastrar(@Valid @RequestBody RequisicaoMotorista requisicaoMotorista) {
@@ -40,5 +46,10 @@ public class MotoristaController implements SwaggerMotoristaController {
             @RequestBody RequisicaoMotorista requisicaoMotorista
     ) {
         return this.motoristaService.atualizar(id, requisicaoMotorista.toDomain());
+    }
+
+    @Override
+    public void apagar(@PathVariable String id) {
+        this.motoristaService.apagar(id);
     }
 }

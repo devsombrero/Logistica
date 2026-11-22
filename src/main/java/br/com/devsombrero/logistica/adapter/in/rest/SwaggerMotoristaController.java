@@ -2,19 +2,33 @@ package br.com.devsombrero.logistica.adapter.in.rest;
 
 import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoMotorista;
 import br.com.devsombrero.logistica.domain.dto.RetornoMotorista;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "MotoristaController", description = "Endpoints de controle de Motoristas")
 public interface SwaggerMotoristaController {
+
+    @Operation(
+            summary = "Buscar motorista paginados",
+            description = "Retorna motoristas de forma paginada."
+    )
+    @ApiResponse(responseCode = "200", description = "Motorista retornados com sucesso")
+    @ApiResponse(responseCode = "400", description = "Parâmetros inválidos")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @GetMapping
+    Paginado<RetornoMotorista> buscarPaginado(
+            @Parameter(description = "Quantidade de registros por página")
+            @RequestParam(defaultValue = "10") int tamanhoPagina,
+
+            @Parameter(description = "Número da página, começando em zero")
+            @RequestParam(defaultValue = "0") int paginaAtual
+    );
 
     @Operation(
             summary = "Cadastrar motorista",
@@ -75,5 +89,19 @@ public interface SwaggerMotoristaController {
             @Parameter String id,
             @RequestBody(description = "Dados para atualização do motorista")
             RequisicaoMotorista requisicaoMotorista
+    );
+
+    @Operation(
+            summary = "Excluir motorista",
+            description = "Exclui um motorista através do seu identificador."
+    )
+    @ApiResponse(responseCode = "204", description = "Motorista excluído com sucesso")
+    @ApiResponse(responseCode = "404", description = "Motorista não encontrado")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void apagar(
+            @Parameter(description = "ID do motorista", required = true)
+            String id
     );
 }
