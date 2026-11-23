@@ -1,0 +1,27 @@
+services:
+  mongodb:
+    image: mongo:8.0
+    container_name: logistica-mongodb
+    restart: unless-stopped
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: logisticaP4ss
+      MONGO_INITDB_DATABASE: mgologisticadb00
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongodb_data:/data/db
+      - ./seed.js:/docker-entrypoint-initdb.d/seed.js:ro
+
+    networks:
+      - logistica-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  logistica-network:
+    driver: bridge
