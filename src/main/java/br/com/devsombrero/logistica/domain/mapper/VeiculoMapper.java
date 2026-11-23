@@ -4,7 +4,7 @@ import br.com.devsombrero.logistica.domain.dto.RetornoVeiculo;
 import br.com.devsombrero.logistica.domain.model.Veiculo;
 
 public final class VeiculoMapper {
-    static RetornoVeiculo toResponse(Veiculo veiculo) {
+    public static RetornoVeiculo toResponse(Veiculo veiculo) {
         return new RetornoVeiculo(
                 veiculo.id(),
                 veiculo.placa(),

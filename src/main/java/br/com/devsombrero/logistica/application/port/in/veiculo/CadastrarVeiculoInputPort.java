@@ -1,8 +1,8 @@
 package br.com.devsombrero.logistica.application.port.in.veiculo;
 
-import br.com.devsombrero.logistica.domain.dto.RetornoMotorista;
-import br.com.devsombrero.logistica.domain.model.Motorista;
+import br.com.devsombrero.logistica.domain.dto.RetornoVeiculo;
+import br.com.devsombrero.logistica.domain.model.Veiculo;
 
 public interface CadastrarVeiculoInputPort {
-    RetornoMotorista cadastrar(Motorista motorista);
+    RetornoVeiculo cadastrar(Veiculo veiculo);
 }
