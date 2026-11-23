@@ -1,18 +1,46 @@
 
 const database = db.getSiblingDB("mgologisticadb00");
 
-const now = new Date();
-const day = 86400000;
+// ==========================================
+// CRIAR COLLECTIONS CASO NÃO EXISTAM
+// ==========================================
 
-// Limpar collections
-[
+const collections = [
     "clientes",
     "motoristas",
     "produtos",
     "veiculos",
     "pedidos",
     "entregas"
-].forEach(collection => database[collection].deleteMany({}));
+];
+
+const collectionsExistentes = database.getCollectionNames();
+
+collections.forEach(collection => {
+    if (!collectionsExistentes.includes(collection)) {
+        database.createCollection(collection);
+        print(`Collection criada: ${collection}`);
+    } else {
+        print(`Collection já existe: ${collection}`);
+    }
+});
+
+// ==========================================
+// CONFIGURAÇÕES
+// ==========================================
+
+const now = new Date();
+const day = 86400000;
+
+// ==========================================
+// LIMPAR COLLECTIONS
+// ==========================================
+
+collections.forEach(collection => {
+    database.getCollection(collection).deleteMany({});
+});
+
+print("Collections limpas com sucesso!");
 
 // ==========================================
 // CLIENTES
@@ -20,6 +48,7 @@ const day = 86400000;
 
 const clientes = Array.from({ length: 10 }, (_, i) => ({
     _id: ObjectId(),
+
     nome: [
         "Joao da Silva",
         "Maria Oliveira",
@@ -32,10 +61,12 @@ const clientes = Array.from({ length: 10 }, (_, i) => ({
         "Roberto Souza",
         "Camila Rodrigues"
     ][i],
+
     documento: `1234567890${i}`,
     telefone: `8199999000${i}`,
     email: `cliente${i + 1}@email.com`,
     endereco: `Rua das Flores, ${100 + i}`,
+
     cidade: [
         "Recife",
         "Olinda",
@@ -43,12 +74,15 @@ const clientes = Array.from({ length: 10 }, (_, i) => ({
         "Paulista",
         "Camaragibe"
     ][i % 5],
+
     estado: "PE",
     createdAt: now,
     updatedAt: now
 }));
 
 database.clientes.insertMany(clientes);
+
+print("Clientes inseridos: " + clientes.length);
 
 // ==========================================
 // PRODUTOS
@@ -82,6 +116,8 @@ const produtos = produtosDados.map(p => ({
 
 database.produtos.insertMany(produtos);
 
+print("Produtos inseridos: " + produtos.length);
+
 // ==========================================
 // MOTORISTAS
 // ==========================================
@@ -108,6 +144,8 @@ const motoristas = motoristasDados.map((m, i) => ({
 
 database.motoristas.insertMany(motoristas);
 
+print("Motoristas inseridos: " + motoristas.length);
+
 // ==========================================
 // VEICULOS
 // ==========================================
@@ -133,11 +171,11 @@ const veiculos = veiculosDados.map(v => ({
 
 database.veiculos.insertMany(veiculos);
 
+print("Veiculos inseridos: " + veiculos.length);
+
 // ==========================================
 // PEDIDOS
 // ==========================================
-
-const pedidos = [];
 
 const pedidosDados = [
     { cliente: 0, itens: [[0, 1], [2, 1]], status: "PENDENTE" },
@@ -152,32 +190,56 @@ const pedidosDados = [
     { cliente: 9, itens: [[0, 1], [6, 1]], status: "EM_SEPARACAO" }
 ];
 
+const pedidos = [];
+
 pedidosDados.forEach((dados, i) => {
+
     const itens = dados.itens.map(([produtoIndex, quantidade]) => {
+
         const produto = produtos[produtoIndex];
-        const subtotal = produto.valor.multiply(
-            NumberDecimal(quantidade.toString())
+
+        const valorCentavos = Math.round(
+            Number(produto.valor.toString()) * 100
         );
+
+        const subtotalCentavos = valorCentavos * quantidade;
 
         return {
             produtoId: produto._id.toString(),
             nomeProduto: produto.nome,
             quantidade,
-            valorUnitario: produto.valor,
-            subtotal
+
+            valorUnitario: NumberDecimal(
+                (valorCentavos / 100).toFixed(2)
+            ),
+
+            subtotal: NumberDecimal(
+                (subtotalCentavos / 100).toFixed(2)
+            )
         };
     });
 
-    const valorTotal = itens.reduce(
-        (total, item) => total.add(item.subtotal),
-        NumberDecimal("0")
+    const totalCentavos = itens.reduce(
+        (total, item) => {
+            return total + Math.round(
+                Number(item.subtotal.toString()) * 100
+            );
+        },
+        0
     );
 
     pedidos.push({
         _id: ObjectId(),
         clienteId: clientes[dados.cliente]._id.toString(),
-        dataPedido: new Date(now.getTime() - i * day),
-        valorTotal,
+
+        dataPedido: new Date(
+            now.getTime() - i * day
+        ),
+
+        valorTotal: NumberDecimal(
+            (totalCentavos / 100).toFixed(2)
+        ),
+
         status: dados.status,
         observacao: `Pedido de demonstracao ${i + 1}`,
         itens,
@@ -186,7 +248,14 @@ pedidosDados.forEach((dados, i) => {
     });
 });
 
-database.pedidos.insertMany(pedidos);
+print("Pedidos preparados: " + pedidos.length);
+
+const resultadoPedidos = database.pedidos.insertMany(pedidos);
+
+print(
+    "Pedidos inseridos: " +
+    Object.keys(resultadoPedidos.insertedIds).length
+);
 
 // ==========================================
 // ENTREGAS
@@ -206,21 +275,29 @@ const entregasDados = [
 ];
 
 const entregas = entregasDados.map((dados, i) => {
+
     const cliente = clientes[pedidosDados[i].cliente];
     const status = dados.status;
 
     return {
         _id: ObjectId(),
+
         pedidoId: pedidos[i]._id.toString(),
         motoristaId: motoristas[dados.motorista]._id.toString(),
         veiculoId: veiculos[dados.veiculo]._id.toString(),
+
         enderecoEntrega: cliente.endereco,
         cidade: cliente.cidade,
         estado: cliente.estado,
+
         dataSaida: ["EM_TRANSITO", "ENTREGUE"].includes(status)
             ? new Date(now.getTime() - day)
             : null,
-        dataEntrega: status === "ENTREGUE" ? now : null,
+
+        dataEntrega: status === "ENTREGUE"
+            ? now
+            : null,
+
         status,
         observacao: `Entrega de demonstracao ${i + 1}`,
         createdAt: now,
@@ -228,7 +305,14 @@ const entregas = entregasDados.map((dados, i) => {
     };
 });
 
-database.entregas.insertMany(entregas);
+print("Entregas preparadas: " + entregas.length);
+
+const resultadoEntregas = database.entregas.insertMany(entregas);
+
+print(
+    "Entregas inseridas: " +
+    Object.keys(resultadoEntregas.insertedIds).length
+);
 
 // ==========================================
 // INDICES
@@ -254,21 +338,27 @@ database.entregas.createIndex(
     { unique: true }
 );
 
+print("Indices criados com sucesso!");
+
 // ==========================================
-// RESULTADO
+// RESULTADO FINAL
 // ==========================================
 
 print("\n========== SEED CONCLUIDO ==========");
 
-[
-    "clientes",
-    "produtos",
-    "motoristas",
-    "veiculos",
-    "pedidos",
-    "entregas"
-].forEach(collection => {
-    print(`${collection}: ${database[collection].countDocuments()} registros`);
+let totalRegistros = 0;
+
+collections.forEach(collection => {
+
+    const quantidade = database
+        .getCollection(collection)
+        .countDocuments();
+
+    totalRegistros += quantidade;
+
+    print(`${collection}: ${quantidade} registros`);
 });
 
+print("------------------------------------");
+print("TOTAL DE REGISTROS: " + totalRegistros);
 print("====================================");
