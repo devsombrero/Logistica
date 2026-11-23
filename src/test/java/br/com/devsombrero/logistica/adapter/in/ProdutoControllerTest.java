@@ -1,6 +1,6 @@
 package br.com.devsombrero.logistica.adapter.in;
 
-import br.com.devsombrero.logistica.adapter.in.rest.ProdutoController;
+import br.com.devsombrero.logistica.adapter.in.rest.produto.ProdutoController;
 import br.com.devsombrero.logistica.domain.dto.RetornoProduto;
 import br.com.devsombrero.logistica.domain.exception.EntidadeNotFoundException;
 import br.com.devsombrero.logistica.domain.exception.EntidadeUnprocessableException;

@@ -1,6 +1,6 @@
 package br.com.devsombrero.logistica.adapter.in;
 
-import br.com.devsombrero.logistica.adapter.in.rest.MotoristaController;
+import br.com.devsombrero.logistica.adapter.in.rest.motorista.MotoristaController;
 import br.com.devsombrero.logistica.domain.dto.RetornoMotorista;
 import br.com.devsombrero.logistica.domain.enumerator.StatusMotorista;
 import br.com.devsombrero.logistica.domain.exception.EntidadeNotFoundException;

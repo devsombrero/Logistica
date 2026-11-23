@@ -1,6 +1,6 @@
 package br.com.devsombrero.logistica.adapter.in;
 
-import br.com.devsombrero.logistica.adapter.in.rest.ClienteController;
+import br.com.devsombrero.logistica.adapter.in.rest.cliente.ClienteController;
 import br.com.devsombrero.logistica.config.CorrelationIdFilter;
 import br.com.devsombrero.logistica.domain.dto.RetornoCliente;
 import br.com.devsombrero.logistica.domain.exception.EntidadeNotFoundException;
