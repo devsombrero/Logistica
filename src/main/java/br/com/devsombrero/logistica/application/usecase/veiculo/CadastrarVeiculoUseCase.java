@@ -34,7 +34,7 @@ public class CadastrarVeiculoUseCase implements CadastrarVeiculoInputPort {
         }
 
         if (veiculoPersistenceOutputPort.existePorPlaca(veiculo.placa())) {
-            logger.warn(getClass(), "Cdastro de veiculo recusado: Veículo já tem cadastro com a placa informada");
+            logger.warn(getClass(), "Cadastro de veiculo recusado: Veículo já tem cadastro com a placa informada");
             throw new EntidadeUnprocessableException("Já existe um veículo cadastrado com essa placa.");
         }
 

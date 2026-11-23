@@ -24,6 +24,11 @@ public class VeiculoPersistenceAdapter implements VeiculoPersistenceOutputPort {
     }
 
     @Override
+    public Optional<Veiculo> buscarPorPlaca(String placa) {
+        return repository.findByPlaca(placa);
+    }
+
+    @Override
     public Paginado<Veiculo> buscarPaginado(int tamanhoPagina, int paginaAtual) {
         Pageable pageable = PageRequest.of(paginaAtual, tamanhoPagina);
 
