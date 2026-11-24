@@ -1,10 +1,9 @@
 package br.com.devsombrero.logistica.domain.service;
 
-import br.com.devsombrero.logistica.application.port.in.veiculo.ApagarVeiculoInputPort;
-import br.com.devsombrero.logistica.application.port.in.veiculo.AtualizarVeiculoInputPort;
-import br.com.devsombrero.logistica.application.port.in.veiculo.BuscarVeiculoInputPort;
-import br.com.devsombrero.logistica.application.port.in.veiculo.CadastrarVeiculoInputPort;
+import br.com.devsombrero.logistica.application.port.in.veiculo.*;
+import br.com.devsombrero.logistica.domain.dto.FiltroPesquisaVeiculo;
 import br.com.devsombrero.logistica.domain.dto.RetornoVeiculo;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import br.com.devsombrero.logistica.domain.model.Veiculo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,10 +12,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class VeiculoServiceImpl implements VeiculoService{
 
+    private final BuscarVeiculoPaginadoInputPort buscarVeiculoPaginadoInputPort;
     private final CadastrarVeiculoInputPort cadastrarVeiculoInputPort;
     private final BuscarVeiculoInputPort buscarVeiculoInputPort;
     private final AtualizarVeiculoInputPort atualizarVeiculoInputPort;
     private final ApagarVeiculoInputPort apagarVeiculoInputPort;
+
+    @Override
+    public Paginado<RetornoVeiculo> buscarVeiculoPaginado(
+            int paginaAtual, int tamanhoPagina, FiltroPesquisaVeiculo filtro
+    ) {
+        return this.buscarVeiculoPaginadoInputPort.buscarPaginado(paginaAtual, tamanhoPagina, filtro);
+    }
 
     @Override
     public RetornoVeiculo cadastrar(Veiculo veiculo) {

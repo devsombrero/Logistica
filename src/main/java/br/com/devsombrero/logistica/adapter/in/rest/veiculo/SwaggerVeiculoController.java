@@ -1,7 +1,9 @@
 package br.com.devsombrero.logistica.adapter.in.rest.veiculo;
 
 import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoVeiculo;
+import br.com.devsombrero.logistica.domain.dto.FiltroPesquisaVeiculo;
 import br.com.devsombrero.logistica.domain.dto.RetornoVeiculo;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -12,6 +14,25 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "VeiculoController", description = "Endpoints de controle de Veiculos")
 public interface SwaggerVeiculoController {
+
+    @Operation(
+            summary = "Buscar veículos paginados",
+            description = "Realiza a busca paginada de veículos com filtros opcionais."
+    )
+    @ApiResponse(responseCode = "200", description = "Veículos encontrados")
+    @ApiResponse(responseCode = "400", description = "Parâmetros inválidos")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @GetMapping
+    Paginado<RetornoVeiculo> buscarPaginado(
+            @Parameter(description = "Número da página (inicia em 0)")
+            @RequestParam(defaultValue = "0") int paginaAtual,
+
+            @Parameter(description = "Quantidade de registros por página")
+            @RequestParam(defaultValue = "10") int tamanhoPagina,
+
+            @Parameter(description = "Filtros de pesquisa")
+            @ModelAttribute FiltroPesquisaVeiculo filtro
+    );
 
     @Operation(
             summary = "Cadastrar veiculo",

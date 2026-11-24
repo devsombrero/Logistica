@@ -1,6 +1,8 @@
 package br.com.devsombrero.logistica.application.port.out.veiculo;
 
 import br.com.devsombrero.logistica.application.port.out.crud.CrudPersistenceOutputPort;
+import br.com.devsombrero.logistica.domain.dto.FiltroPesquisaVeiculo;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import br.com.devsombrero.logistica.domain.model.Veiculo;
 
 import java.util.Optional;
@@ -10,4 +12,10 @@ public interface VeiculoPersistenceOutputPort
     boolean existePorPlaca(String placa);
     Optional<Veiculo> buscarPorPlaca(String placa);
     boolean existePorPlacaIdDiferente(String placa, String id);
+
+    Paginado<Veiculo> buscarPaginadoComFiltros(
+            int paginaAtual,
+            int tamanhoPagina,
+            FiltroPesquisaVeiculo filtroPesquisaVeiculo
+    );
 }
