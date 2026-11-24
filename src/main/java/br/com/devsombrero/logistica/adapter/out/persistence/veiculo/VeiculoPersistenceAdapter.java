@@ -29,6 +29,11 @@ public class VeiculoPersistenceAdapter implements VeiculoPersistenceOutputPort {
     }
 
     @Override
+    public boolean existePorPlacaIdDiferente(String placa, String id) {
+        return repository.existePlacaIdDiferente(placa, id);
+    }
+
+    @Override
     public Paginado<Veiculo> buscarPaginado(int tamanhoPagina, int paginaAtual) {
         Pageable pageable = PageRequest.of(paginaAtual, tamanhoPagina);
 

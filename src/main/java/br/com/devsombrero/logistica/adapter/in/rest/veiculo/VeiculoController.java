@@ -1,7 +1,6 @@
 package br.com.devsombrero.logistica.adapter.in.rest.veiculo;
 
 import br.com.devsombrero.logistica.adapter.in.dto.RequisicaoVeiculo;
-import br.com.devsombrero.logistica.domain.dto.RetornoProduto;
 import br.com.devsombrero.logistica.domain.dto.RetornoVeiculo;
 import br.com.devsombrero.logistica.domain.service.VeiculoService;
 import jakarta.validation.Valid;
@@ -31,6 +30,14 @@ public class VeiculoController implements SwaggerVeiculoController {
     @Override
     public RetornoVeiculo buscarPorPlaca(@PathVariable String placa) {
         return this.veiculoService.buscarPorPlaca(placa);
+    }
+
+    @Override
+    public RetornoVeiculo atualizar(
+            @PathVariable String id,
+            @RequestBody RequisicaoVeiculo requisicaoVeiculo
+    ) {
+        return this.veiculoService.atualizar(id, requisicaoVeiculo.toDomain());
     }
 
 }

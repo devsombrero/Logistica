@@ -7,4 +7,5 @@ public interface VeiculoService {
     RetornoVeiculo cadastrar(Veiculo veiculo);
     RetornoVeiculo buscarPorId(String id);
     RetornoVeiculo buscarPorPlaca(String placa);
+    RetornoVeiculo atualizar(String id, Veiculo veiculo);
 }

@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -49,4 +50,20 @@ public interface SwaggerVeiculoController {
     @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
     @GetMapping("/placa/{placa}")
     RetornoVeiculo buscarPorPlaca(@Parameter String placa);
+
+    @Operation(
+            summary = "Atualizar veiculo",
+            description = "Atualizar cadastro de veiculo."
+    )
+    @ApiResponse(responseCode = "200", description = "Veiculo atualizado com sucesso")
+    @ApiResponse(responseCode = "400", description = "Dados inválidos")
+    @ApiResponse(responseCode = "422", description = "Veiculo já cadastrado")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    RetornoVeiculo atualizar(
+            @Parameter String id,
+            @RequestBody(description = "Dados para atualização do veiculo")
+            RequisicaoVeiculo requisicaoVeiculo
+    );
 }
