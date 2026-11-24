@@ -40,4 +40,9 @@ public class VeiculoController implements SwaggerVeiculoController {
         return this.veiculoService.atualizar(id, requisicaoVeiculo.toDomain());
     }
 
+    @Override
+    public void apagar(@PathVariable String id) {
+        this.veiculoService.apagar(id);
+    }
+
 }

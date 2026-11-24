@@ -1,5 +1,6 @@
 package br.com.devsombrero.logistica.domain.service;
 
+import br.com.devsombrero.logistica.application.port.in.veiculo.ApagarVeiculoInputPort;
 import br.com.devsombrero.logistica.application.port.in.veiculo.AtualizarVeiculoInputPort;
 import br.com.devsombrero.logistica.application.port.in.veiculo.BuscarVeiculoInputPort;
 import br.com.devsombrero.logistica.application.port.in.veiculo.CadastrarVeiculoInputPort;
@@ -15,6 +16,7 @@ public class VeiculoServiceImpl implements VeiculoService{
     private final CadastrarVeiculoInputPort cadastrarVeiculoInputPort;
     private final BuscarVeiculoInputPort buscarVeiculoInputPort;
     private final AtualizarVeiculoInputPort atualizarVeiculoInputPort;
+    private final ApagarVeiculoInputPort apagarVeiculoInputPort;
 
     @Override
     public RetornoVeiculo cadastrar(Veiculo veiculo) {
@@ -34,5 +36,10 @@ public class VeiculoServiceImpl implements VeiculoService{
     @Override
     public RetornoVeiculo atualizar(String id, Veiculo veiculo) {
         return this.atualizarVeiculoInputPort.atualizar(id, veiculo);
+    }
+
+    @Override
+    public void apagar(String id) {
+        this.apagarVeiculoInputPort.apagar(id);
     }
 }

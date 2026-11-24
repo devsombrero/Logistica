@@ -8,4 +8,5 @@ public interface VeiculoService {
     RetornoVeiculo buscarPorId(String id);
     RetornoVeiculo buscarPorPlaca(String placa);
     RetornoVeiculo atualizar(String id, Veiculo veiculo);
+    void apagar(String id);
 }
