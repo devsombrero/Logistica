@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public record PedidoDocument(
         LocalDateTime dataPedido,
         BigDecimal valorTotal,
         @Indexed
+        @Field("status")
         StatusPedido statusPedido,
         String observacao,
         List<ItemPedidoDocument> itens,

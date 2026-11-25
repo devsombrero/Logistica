@@ -24,7 +24,7 @@ public class PedidoController implements SwaggerPedidoController {
 
     @Override
     public RetornoPedido buscarPorId(String id) {
-        return null;
+        return this.pedidoService.buscarPorId(id);
     }
 
     @Override

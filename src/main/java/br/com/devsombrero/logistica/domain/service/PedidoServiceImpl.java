@@ -1,6 +1,7 @@
 package br.com.devsombrero.logistica.domain.service;
 
 import br.com.devsombrero.logistica.application.port.in.pedido.AtualizarPedidoInputPort;
+import br.com.devsombrero.logistica.application.port.in.pedido.BuscarPedidoInputPort;
 import br.com.devsombrero.logistica.application.port.in.pedido.CadastrarPedidoInputPort;
 import br.com.devsombrero.logistica.application.port.in.pedido.CancelarPedidoInputPort;
 import br.com.devsombrero.logistica.domain.dto.RetornoPedido;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PedidoServiceImpl implements PedidoService {
 
+    private final BuscarPedidoInputPort buscarPedidoInputPort;
     private final CadastrarPedidoInputPort cadastrarPedidoInputPort;
     private final AtualizarPedidoInputPort atualizarPedidoInputPort;
     private final CancelarPedidoInputPort cancelarPedidoInputPort;
@@ -29,5 +31,10 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public RetornoPedido cancelar(String id) {
         return this.cancelarPedidoInputPort.cancelar(id);
+    }
+
+    @Override
+    public RetornoPedido buscarPorId(String id) {
+        return this.buscarPedidoInputPort.buscarPorId(id);
     }
 }

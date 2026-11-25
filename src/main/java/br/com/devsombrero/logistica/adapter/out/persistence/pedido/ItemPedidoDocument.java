@@ -1,6 +1,7 @@
 package br.com.devsombrero.logistica.adapter.out.persistence.pedido;
 
 import br.com.devsombrero.logistica.domain.model.ItemPedido;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 
@@ -9,6 +10,7 @@ public record ItemPedidoDocument(
         String nomeProduto,
         Integer quantidade,
         BigDecimal valorUnitario,
+        @Field("subtotal")
         BigDecimal subTotal
 ) {
     public static ItemPedidoDocument fromDomain(ItemPedido item) {

@@ -7,4 +7,5 @@ public interface PedidoService {
     RetornoPedido cadastrar(Pedido pedido);
     RetornoPedido atualizar(String id, Pedido pedido);
     RetornoPedido cancelar(String id);
+    RetornoPedido buscarPorId(String id);
 }
