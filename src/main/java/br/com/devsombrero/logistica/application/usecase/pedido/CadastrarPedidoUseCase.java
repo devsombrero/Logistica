@@ -70,7 +70,7 @@ public class CadastrarPedidoUseCase implements CadastrarPedidoInputPort {
     }
 
     private List<ItemPedido> montarItens(List<ItemPedido> itensSolicitados) {
-        if (itensSolicitados == null || itensSolicitados.isEmpty()) {
+        if (itensSolicitados.isEmpty()) {
             throw new RequisicaoInvalidaException("O pedido deve possuir pelo menos um produto");
         }
 

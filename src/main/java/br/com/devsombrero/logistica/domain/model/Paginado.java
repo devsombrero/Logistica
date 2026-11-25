@@ -15,8 +15,8 @@ public record Paginado<T>(
                 conteudo.stream().map(conversor).toList(),
                 paginaAtual,
                 tamanhoPagina,
-                (int) totalElementos,
-                totalPaginas
+                totalPaginas,
+                totalElementos
         );
     }
 }

@@ -68,7 +68,7 @@ public class AtualizarPedidoUseCase implements AtualizarPedidoInputPort {
     }
 
     private boolean possuiItens(Pedido pedido) {
-        return pedido.itens() != null && !pedido.itens().isEmpty();
+        return !pedido.itens().isEmpty();
     }
 
     private List<ItemPedido> montarItens(List<ItemPedido> itensSolicitados) {

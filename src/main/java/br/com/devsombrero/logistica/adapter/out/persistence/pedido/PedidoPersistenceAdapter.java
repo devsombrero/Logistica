@@ -91,8 +91,8 @@ public class PedidoPersistenceAdapter implements PedidoPersistenceOutputPort {
                         .toList(),
                 pagina.getNumber(),
                 pagina.getSize(),
-                (int) pagina.getTotalElements(),
-                pagina.getTotalPages()
+                pagina.getTotalPages(),
+                pagina.getTotalElements()
         );
     }
 }

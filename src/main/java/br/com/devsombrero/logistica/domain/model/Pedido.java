@@ -56,7 +56,7 @@ public record Pedido(
     }
 
     public boolean possuiItens() {
-        return itens != null && !itens.isEmpty();
+        return !itens.isEmpty();
     }
 
     public int quantidadeTotalItens() {

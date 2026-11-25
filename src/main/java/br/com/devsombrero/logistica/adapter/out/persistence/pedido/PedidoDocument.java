@@ -85,7 +85,7 @@ public record PedidoDocument(
     }
 
     private List<ItemPedidoDocument> atualizarItens(Pedido pedido) {
-        if (pedido.itens() == null || pedido.itens().isEmpty()) {
+        if (pedido.itens().isEmpty()) {
             return this.itens;
         }
         return pedido.itens().stream()
