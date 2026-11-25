@@ -49,6 +49,6 @@ public class PedidoController implements SwaggerPedidoController {
 
     @Override
     public RetornoPedido cancelar(String id) {
-        return null;
+        return this.pedidoService.cancelar(id);
     }
 }

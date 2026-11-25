@@ -6,4 +6,5 @@ import br.com.devsombrero.logistica.domain.model.Pedido;
 public interface PedidoService {
     RetornoPedido cadastrar(Pedido pedido);
     RetornoPedido atualizar(String id, Pedido pedido);
+    RetornoPedido cancelar(String id);
 }

@@ -1,6 +1,7 @@
 package br.com.devsombrero.logistica.domain.model;
 
 import br.com.devsombrero.logistica.domain.enumerator.StatusPedido;
+import br.com.devsombrero.logistica.domain.exception.EntidadeUnprocessableException;
 import br.com.devsombrero.logistica.domain.exception.RequisicaoInvalidaException;
 
 import java.math.BigDecimal;
@@ -114,5 +115,27 @@ public record Pedido(
         return itens.stream()
                 .map(ItemPedido::subTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public Pedido cancelar() {
+        if (estaCancelado()) {
+            throw new EntidadeUnprocessableException("Pedido " + id + " já está cancelado");
+        }
+        if (!podeSerCancelado()) {
+            throw new EntidadeUnprocessableException(
+                    "Pedido " + id + " não pode ser cancelado no status " + statusPedido);
+        }
+
+        return new Pedido(
+                this.id,
+                this.clienteId,
+                this.dataPedido,
+                this.valorTotal,
+                StatusPedido.CANCELADO,
+                this.observacao,
+                this.itens,
+                this.dataCriacao,
+                this.dataAtualizacao
+        );
     }
 }
