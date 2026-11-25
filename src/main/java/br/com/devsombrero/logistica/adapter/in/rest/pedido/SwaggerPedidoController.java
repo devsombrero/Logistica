@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Pedidos", description = "Cadastro, consulta, edição e cancelamento de pedidos")
@@ -49,7 +48,7 @@ public interface SwaggerPedidoController {
     @ApiResponse(responseCode = "200", description = "Página de pedidos retornada")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<Paginado<RetornoPedido>> buscarPaginado(
+    Paginado<RetornoPedido> buscarPaginado(
             @Parameter(description = "Quantidade de registros por página", example = "20")
             @RequestParam(defaultValue = "20") int tamanhoPagina,
             @Parameter(description = "Número da página, iniciando em 0", example = "0")
@@ -63,7 +62,7 @@ public interface SwaggerPedidoController {
     })
     @GetMapping("/cliente/{clienteId}")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<Paginado<RetornoPedido>> buscarPorCliente(
+    Paginado<RetornoPedido> buscarPorCliente(
             @Parameter(description = "ID do cliente", example = "665f1b9a8a4b2c1d3e4f5a01")
             @PathVariable String clienteId,
             @Parameter(description = "Quantidade de registros por página", example = "20")
@@ -76,7 +75,7 @@ public interface SwaggerPedidoController {
     @ApiResponse(responseCode = "200", description = "Página de pedidos com o status informado")
     @GetMapping("/status/{status}")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<Paginado<RetornoPedido>> buscarPorStatus(
+    Paginado<RetornoPedido> buscarPorStatus(
             @Parameter(description = "Status do pedido", example = "PENDENTE")
             @PathVariable StatusPedido status,
             @Parameter(description = "Quantidade de registros por página", example = "20")
@@ -95,9 +94,9 @@ public interface SwaggerPedidoController {
             @ApiResponse(responseCode = "404", description = "Pedido ou produto não encontrado"),
             @ApiResponse(responseCode = "422", description = "Pedido não pode ser editado no status atual")
     })
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<RetornoPedido> atualizar(
+    RetornoPedido atualizar(
             @Parameter(description = "ID do pedido", example = "665f1d3f8a4b2c1d3e4f5a99")
             @PathVariable String id,
             @RequestBody @Valid RequisicaoAtualizacaoPedido request
@@ -114,7 +113,7 @@ public interface SwaggerPedidoController {
     })
     @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/{id}/cancelar")
-    ResponseEntity<RetornoPedido> cancelar(
+    RetornoPedido cancelar(
             @Parameter(description = "ID do pedido", example = "665f1d3f8a4b2c1d3e4f5a99")
             @PathVariable String id
     );

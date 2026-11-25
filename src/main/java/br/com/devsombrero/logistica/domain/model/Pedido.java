@@ -80,4 +80,39 @@ public record Pedido(
     public boolean podeSerEnviado() {
         return statusPedido == StatusPedido.EM_SEPARACAO;
     }
+
+    public boolean podeSerEditado() {
+        return statusPedido == StatusPedido.PENDENTE;
+    }
+
+    public Pedido atualizar(String novaObservacao, List<ItemPedido> novosItens) {
+        if (!podeSerEditado()) {
+            throw new RequisicaoInvalidaException(
+                    "Pedido " + id + " não pode ser editado no status " + statusPedido);
+        }
+
+        List<ItemPedido> itensFinais = (novosItens == null || novosItens.isEmpty())
+                ? this.itens
+                : novosItens;
+
+        String observacaoFinal = novaObservacao != null ? novaObservacao : this.observacao;
+
+        return new Pedido(
+                this.id,
+                this.clienteId,
+                this.dataPedido,
+                somarSubTotais(itensFinais),
+                this.statusPedido,
+                observacaoFinal,
+                itensFinais,
+                this.dataCriacao,
+                this.dataAtualizacao
+        );
+    }
+
+    private static BigDecimal somarSubTotais(List<ItemPedido> itens) {
+        return itens.stream()
+                .map(ItemPedido::subTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 }

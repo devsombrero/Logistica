@@ -1,5 +1,6 @@
 package br.com.devsombrero.logistica.domain.service;
 
+import br.com.devsombrero.logistica.application.port.in.pedido.AtualizarPedidoInputPort;
 import br.com.devsombrero.logistica.application.port.in.pedido.CadastrarPedidoInputPort;
 import br.com.devsombrero.logistica.domain.dto.RetornoPedido;
 import br.com.devsombrero.logistica.domain.model.Pedido;
@@ -11,9 +12,15 @@ import org.springframework.stereotype.Service;
 public class PedidoServiceImpl implements PedidoService {
 
     private final CadastrarPedidoInputPort cadastrarPedidoInputPort;
+    private final AtualizarPedidoInputPort atualizarPedidoInputPort;
 
     @Override
     public RetornoPedido cadastrar(Pedido pedido) {
         return this.cadastrarPedidoInputPort.cadastrar(pedido);
+    }
+
+    @Override
+    public RetornoPedido atualizar(String id, Pedido pedido) {
+        return this.atualizarPedidoInputPort.atualizar(id, pedido);
     }
 }
