@@ -34,17 +34,17 @@ public class PedidoController implements SwaggerPedidoController {
 
     @Override
     public Paginado<RetornoPedido> buscarPaginado(int tamanhoPagina, int paginaAtual) {
-        return null;
+        return this.pedidoService.buscarPaginado(tamanhoPagina, paginaAtual);
     }
 
     @Override
     public Paginado<RetornoPedido> buscarPorCliente(String clienteId, int tamanhoPagina, int paginaAtual) {
-        return null;
+        return this.pedidoService.buscarPorCliente(clienteId, tamanhoPagina, paginaAtual);
     }
 
     @Override
     public Paginado<RetornoPedido> buscarPorStatus(StatusPedido status, int tamanhoPagina, int paginaAtual) {
-        return null;
+        return this.pedidoService.buscarPorStatus(status, tamanhoPagina, paginaAtual);
     }
 
     @Override

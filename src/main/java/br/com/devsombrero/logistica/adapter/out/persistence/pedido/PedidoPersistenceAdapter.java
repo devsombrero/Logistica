@@ -17,27 +17,25 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class PedidoPersistenceAdapter implements PedidoPersistenceOutputPort {
-
-    private static final int PAGINA_PADRAO = 0;
     private static final int TAMANHO_PAGINA_PADRAO = 20;
     private static final Sort ORDENACAO_PADRAO = Sort.by(Sort.Direction.DESC, "dataPedido");
 
     private final PedidoMongoRepository pedidoMongoRepository;
 
     @Override
-    public Paginado<Pedido> buscarPedidoPorStatus(StatusPedido statusPedido) {
+    public Paginado<Pedido> buscarPedidoPorStatus(StatusPedido statusPedido, int tamanhoPagina, int paginaAtual) {
         Page<PedidoDocument> pagina = pedidoMongoRepository.findByStatusPedido(
                 statusPedido,
-                criarPageable(TAMANHO_PAGINA_PADRAO, PAGINA_PADRAO)
+                criarPageable(tamanhoPagina, paginaAtual)
         );
         return toPaginado(pagina);
     }
 
     @Override
-    public Paginado<Pedido> buscarPedidosPorCliente(String clienteId) {
+    public Paginado<Pedido> buscarPedidosPorCliente(String clienteId, int tamanhoPagina, int paginaAtual) {
         Page<PedidoDocument> pagina = pedidoMongoRepository.findByClienteId(
                 clienteId,
-                criarPageable(TAMANHO_PAGINA_PADRAO, PAGINA_PADRAO)
+                criarPageable(tamanhoPagina, paginaAtual)
         );
         return toPaginado(pagina);
     }

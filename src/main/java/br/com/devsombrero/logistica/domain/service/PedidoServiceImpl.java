@@ -1,10 +1,9 @@
 package br.com.devsombrero.logistica.domain.service;
 
-import br.com.devsombrero.logistica.application.port.in.pedido.AtualizarPedidoInputPort;
-import br.com.devsombrero.logistica.application.port.in.pedido.BuscarPedidoInputPort;
-import br.com.devsombrero.logistica.application.port.in.pedido.CadastrarPedidoInputPort;
-import br.com.devsombrero.logistica.application.port.in.pedido.CancelarPedidoInputPort;
+import br.com.devsombrero.logistica.application.port.in.pedido.*;
 import br.com.devsombrero.logistica.domain.dto.RetornoPedido;
+import br.com.devsombrero.logistica.domain.enumerator.StatusPedido;
+import br.com.devsombrero.logistica.domain.model.Paginado;
 import br.com.devsombrero.logistica.domain.model.Pedido;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,22 @@ public class PedidoServiceImpl implements PedidoService {
     private final CadastrarPedidoInputPort cadastrarPedidoInputPort;
     private final AtualizarPedidoInputPort atualizarPedidoInputPort;
     private final CancelarPedidoInputPort cancelarPedidoInputPort;
+    private final BuscarPedidoPaginadoInputPort buscarPedidoPaginadoInputPort;
+
+    @Override
+    public Paginado<RetornoPedido> buscarPaginado(int tamanhoPagina, int paginaAtual) {
+        return this.buscarPedidoPaginadoInputPort.buscarPaginado(tamanhoPagina, paginaAtual);
+    }
+
+    @Override
+    public Paginado<RetornoPedido> buscarPorCliente(String clienteId, int tamanhoPagina, int paginaAtual) {
+        return this.buscarPedidoPaginadoInputPort.buscarPorCliente(clienteId, tamanhoPagina, paginaAtual);
+    }
+
+    @Override
+    public Paginado<RetornoPedido> buscarPorStatus(StatusPedido statusPedido, int tamanhoPagina, int paginaAtual) {
+        return this.buscarPedidoPaginadoInputPort.buscarPorStatus(statusPedido, tamanhoPagina, paginaAtual);
+    }
 
     @Override
     public RetornoPedido cadastrar(Pedido pedido) {

@@ -7,6 +7,6 @@ import br.com.devsombrero.logistica.domain.model.Pedido;
 
 public interface PedidoPersistenceOutputPort
     extends CrudPersistenceOutputPort<Pedido, String> {
-    Paginado<Pedido> buscarPedidosPorCliente(String clienteId);
-    Paginado<Pedido> buscarPedidoPorStatus(StatusPedido statusPedido);
+    Paginado<Pedido> buscarPedidosPorCliente(String clienteId, int tamanhoPagina, int paginaAtual);
+    Paginado<Pedido> buscarPedidoPorStatus(StatusPedido statusPedido, int tamanhoPagina, int paginaAtual);
 }
