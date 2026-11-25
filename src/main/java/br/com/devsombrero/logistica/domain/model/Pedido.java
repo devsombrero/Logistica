@@ -1,6 +1,7 @@
 package br.com.devsombrero.logistica.domain.model;
 
 import br.com.devsombrero.logistica.domain.enumerator.StatusPedido;
+import br.com.devsombrero.logistica.domain.exception.RequisicaoInvalidaException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -17,6 +18,35 @@ public record Pedido(
         LocalDateTime dataCriacao,
         LocalDateTime dataAtualizacao
 ) {
+
+    public Pedido {
+        itens = itens == null ? List.of() : List.copyOf(itens);
+    }
+
+    public static Pedido criarNovo(String clienteId, String observacao, List<ItemPedido> itens) {
+        if (clienteId == null || clienteId.isBlank()) {
+            throw new RequisicaoInvalidaException("O pedido deve possuir um cliente");
+        }
+        if (itens == null || itens.isEmpty()) {
+            throw new RequisicaoInvalidaException("O pedido deve possuir pelo menos um produto");
+        }
+
+        BigDecimal total = itens.stream()
+                .map(ItemPedido::subTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return new Pedido(
+                null,
+                clienteId,
+                LocalDateTime.now(),
+                total,
+                StatusPedido.PENDENTE,
+                observacao,
+                itens,
+                null,
+                null
+        );
+    }
 
     public BigDecimal calcularValorTotal() {
         return itens.stream()
