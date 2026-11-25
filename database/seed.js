@@ -76,8 +76,8 @@ const clientes = Array.from({ length: 10 }, (_, i) => ({
     ][i % 5],
 
     estado: "PE",
-    createdAt: now,
-    updatedAt: now
+    dataCriacao: now,
+    dataAtualizacao: now
 }));
 
 database.clientes.insertMany(clientes);
@@ -110,8 +110,8 @@ const produtos = produtosDados.map(p => ({
     largura: NumberDecimal(p[4].toString()),
     comprimento: NumberDecimal(p[5].toString()),
     valor: NumberDecimal(p[6].toString()),
-    createdAt: now,
-    updatedAt: now
+    dataCriacao: now,
+    dataAtualizacao: now
 }));
 
 database.produtos.insertMany(produtos);
@@ -138,8 +138,8 @@ const motoristas = motoristasDados.map((m, i) => ({
     cnh: m[2],
     validadeCnh: new Date("2029-12-31T00:00:00Z"),
     status: m[3],
-    createdAt: now,
-    updatedAt: now
+    dataCriacao: now,
+    dataAtualizacao: now
 }));
 
 database.motoristas.insertMany(motoristas);
@@ -165,8 +165,8 @@ const veiculos = veiculosDados.map(v => ({
     marca: v[2],
     capacidadeCarga: NumberDecimal(v[3].toString()),
     status: v[4],
-    createdAt: now,
-    updatedAt: now
+    dataCriacao: now,
+    dataAtualizacao: now
 }));
 
 database.veiculos.insertMany(veiculos);
@@ -243,8 +243,8 @@ pedidosDados.forEach((dados, i) => {
         status: dados.status,
         observacao: `Pedido de demonstracao ${i + 1}`,
         itens,
-        createdAt: now,
-        updatedAt: now
+        dataCriacao: now,
+        dataAtualizacao: now
     });
 });
 
@@ -300,8 +300,8 @@ const entregas = entregasDados.map((dados, i) => {
 
         status,
         observacao: `Entrega de demonstracao ${i + 1}`,
-        createdAt: now,
-        updatedAt: now
+        dataCriacao: now,
+        dataAtualizacao: now
     };
 });
 
